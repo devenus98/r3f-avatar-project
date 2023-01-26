@@ -20,6 +20,7 @@ import { getAvatarData } from "../library/utils";
 import { getModelFromScene, getScreenShot } from "../library/utils";
 import styles from "./World.module.css";
 import { AppContext } from "./index";
+import Avatar from '../components/Avatar';
 
 
 const pinataApiKey = process.env.VITE_PINATA_API_KEY;
@@ -78,7 +79,7 @@ export default function World({ avatar, open, lootTokens, mLootTokens, hyperLoot
 
     // find the trait inside the collection array inside modelTraits
     const category = modelTraits.filter((trait: any) => trait.trait === type)[0];
-    const trait = category.collection.filter((trait: any) => trait.name === cleanedName)[0];
+    const trait = category.collection[0];
 
     if (trait) return trait;
 
@@ -221,7 +222,7 @@ export default function World({ avatar, open, lootTokens, mLootTokens, hyperLoot
 
       // for each key in avatar, log the value of the key
       for (const key in avatar) {
-        const trait = fetchTrait(key, avatar[key]);
+        const trait = fetchTrait(key, avatar[key].name);
         if (trait) {
           loader
             .loadAsync(`${templateInfo.traitsDirectory}${trait?.directory}`, (e) => {
@@ -460,8 +461,7 @@ export default function World({ avatar, open, lootTokens, mLootTokens, hyperLoot
                 
                   <mesh scale={2}
                   >
-                    {/* if scene is not null, show it */}
-                    {scene.current && <primitive object={(standRoot as any).current?.clone() ?? null}/>}
+                    <Avatar avatar={avatar} stand={stand} fetchTrait={fetchTrait} templateInfo={templateInfo}/>
                   </mesh>
                 </PerspectiveCamera>
               </Canvas>

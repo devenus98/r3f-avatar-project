@@ -29,7 +29,7 @@ const Content = () => {
   const [genesisAdventurer, setGenesisAdventurer] = useState([]);
 
   const { state, account, setAccount, library, setLibrary, provider, setProvider} = useContext(AppContext);
-
+  const getLootAbi =(name)=> lootAbi.find((loot)=>loot.name===name);
   useEffect(() => {
     if (!account) return;
     const signer = library.getSigner();
@@ -40,27 +40,28 @@ const Content = () => {
       signer
     );
     (async () => {
-      const [chest, foot, hand, head, neck, ring, waist, weapon] =
-      await Promise.all([
-        synthContract.getChest(account),
-        synthContract.getFoot(account),
-        synthContract.getHand(account),
-        synthContract.getHead(account),
-        synthContract.getNeck(account),
-        synthContract.getRing(account),
-        synthContract.getWaist(account),
-        synthContract.getWeapon(account),
-      ]);
-
+      // const [chest, foot, hand, head, neck, ring, waist, weapon] =
+      // await Promise.all([
+      //   synthContract.getChest(account),
+      //   synthContract.getFoot(account),
+      //   synthContract.getHand(account),
+      //   synthContract.getHead(account),
+      //   synthContract.getNeck(account),
+      //   synthContract.getRing(account),
+      //   synthContract.getWaist(account),
+      //   synthContract.getWeapon(account),
+      // ]);
+      // 
+      
       const loot = {
-        chest,
-        foot,
-        hand,
-        head,
-        neck,
-        waist,
-        ring,
-        weapon
+        chest:getLootAbi('getChest'),
+        foot:getLootAbi('getFoot'),
+        hand:getLootAbi('getHand'),
+        head:getLootAbi('getHead'),
+        neck:getLootAbi('getNeck'),
+        waist:getLootAbi('getRing'),
+        ring:getLootAbi('getWaist'),
+        weapon:getLootAbi('getWeapon'),
       }
 
       console.log('loot is', loot);
