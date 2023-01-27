@@ -3,8 +3,8 @@
   border-radius: 5px;
   position: absolute;
   float: left;
-  width: 700px;
-  height: 500px;
+  width: 80vw;
+  height: 90vh;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -26,14 +26,14 @@
 .bodySection {
   display: flex;
   justify-content: center;
-  height: 57%;
+  height: 80%;
 }
 
 .headerTitle {
   font-size: 25px;
   font-weight: 700;
   color: white;
-  margin: 40px;
+  margin: 24px;
   line-height: 39px;
   text-transform: uppercase;
   letter-spacing: 1px;

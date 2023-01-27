@@ -56,7 +56,7 @@ const Avatar = ({
   }, [avatar]);
   return (
     <>
-      <group ref={groupAvatarRef} position={[0, -0.52, 0]} />
+      <group ref={groupAvatarRef} position={[0, -0.72, 0]} />
       <pointLight color={0xff7a1a} intensity={0.5} position={[0, 7, 7]} />
       <OrbitControls />
     </>
